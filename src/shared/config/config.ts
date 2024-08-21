@@ -2,7 +2,7 @@ import { defaultLanguages } from '~/shared/const/common.ts';
 
 
 const API_PATH =
-  import.meta.env.REACT_APP_API_PATH || 'http://10.1.1.138:5000';
+  import.meta.env.REACT_APP_API_PATH || 'https://json-mock-1qk2.onrender.com';
 const SOCKET_PATH =
   import.meta.env.REACT_APP_SOCKET_PATH || '';
 
