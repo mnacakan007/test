@@ -16,7 +16,7 @@ export const ROUTE_PATH = {
 	author              : 'author/:id',
 	noMatch             : '*',
 	errorPage           : '404',
-	home                : '/:locale',
+	home                : '/',
 	help                : 'help',
 	selectedNews        : 'news/:year/:month/:day/:category/:id',
 	selectedMedicineNews: 'medicine/news/:year/:month/:day/:category/:id',
