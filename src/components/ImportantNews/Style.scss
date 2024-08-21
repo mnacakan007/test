@@ -1,0 +1,87 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.importnant_news {
+    @include standardCol(3);
+    &:before {
+        display: block;
+        content: "";
+        border-top: 3px solid $creamyF3;
+        margin-bottom: -3px;
+    }
+    .section_title {
+        padding-bottom: 20px;
+    }
+    .news_list {
+        @extend %standardList;
+        li {
+            margin-bottom: 25px;
+        }
+    }
+
+    .news_block {
+        @extend %standardNews;
+        .news_title {
+            @extend %middleText;
+        }
+    }
+
+    .subscribe_btn {
+        border: none;
+        background: $primaryColor;
+        padding: 0 12px;
+        color: $white;
+        text-align: center;
+        width: 100%;
+        border-radius: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        @extend %all300;
+        @extend %standardText;
+        &:before {
+            display: block;
+            font-size: 1.6rem;
+            padding: 3px;
+            margin-right: 8px;
+        }
+    }
+
+    @extend %standardNewsSkeleton;
+    .skeleton li {
+        margin-bottom: 25px;
+        span {
+            height: 19px;
+            margin-top: 29px;
+            margin-bottom: 15px;
+        }
+    }
+    @include mediaTo($size960) {
+        .news_block .news_title {
+            font-size: 140%;
+            line-height: 17px;
+        }
+        .skeleton li {
+            span {
+                height: 17px;
+                margin-top: 27px;
+                margin-bottom: 13px;
+            }
+        }
+    }
+    @include mediaRange($size480, $size768) {
+        @include colSize(4)
+    }
+    @include mediaTo($size576) {
+        @include colSize(12);
+        order: 2;
+        margin-top: 20px;
+        .news_image {
+            max-width: 256px;
+        }
+    }
+}
+
+@import '../../assets/scss/extendsEnd';

@@ -1,0 +1,158 @@
+@font-face {
+    font-family: 'ArianAMU';
+    font-display: swap;
+    src: url('/src/assets/fonts/ArianAMU/ArianAMU.eot?#iefix') format('embedded-opentype'),
+    url('/src/assets/fonts/ArianAMU/ArianAMU.woff') format('woff'),
+    url('/src/assets/fonts/ArianAMU/ArianAMU.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ArianAMU-Bold';
+    font-display: swap;
+    src: url('/src/assets/fonts/ArianAMU-Bold/ArianAMU-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/src/assets/fonts/ArianAMU-Bold/ArianAMU-Bold.woff') format('woff'),
+    url('/src/assets/fonts/ArianAMU-Bold/ArianAMU-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('/src/assets/fonts/Helvetica/Helvetica.eot');
+    src: url('/src/assets/fonts/Helvetica/Helvetica.eot?#iefix') format('embedded-opentype'),
+        url('/src/assets/fonts/Helvetica/Helvetica.woff2') format('woff2'),
+        url('/src/assets/fonts/Helvetica/Helvetica.woff') format('woff'),
+        url('/src/assets/fonts/Helvetica/Helvetica.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica-Bold';
+    src: url('/src/assets/fonts/Helvetica-Bold/Helvetica-Bold.eot');
+    src: url('/src/assets/fonts/Helvetica-Bold/Helvetica-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/src/assets/fonts/Helvetica-Bold/Helvetica-Bold.woff2') format('woff2'),
+        url('/src/assets/fonts/Helvetica-Bold/Helvetica-Bold.woff') format('woff'),
+        url('/src/assets/fonts/Helvetica-Bold/Helvetica-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'icon';
+    font-display: 'auto';
+    src: url('/src/assets/fonts/icons/icomoon.eot?n0nkxi');
+    src: url('/src/assets/fonts/icons/icomoon.eot?n0nkxi#iefix') format('embedded-opentype'),
+         url('/src/assets/fonts/icons/icomoon.ttf?n0nkxi') format('truetype'),
+         url('/src/assets/fonts/icons/icomoon.woff?n0nkxi') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class*="icon_"] {
+    @extend %iconElement;
+}
+
+//social icons
+.icon_facebook:before {
+    content: "\e90a";
+}
+.icon_instagram:before {
+    content: "\e90b";
+}
+.icon_linkedin:before {
+    content: "\e90c";
+}
+.icon_twitter:before {
+    content: "\e90d";
+}
+.icon_pinterest:before {
+    content: "\e90e";
+}
+.icon_youtube:before {
+    content: "\e90f";
+}
+.icon_telegram:before {
+    content: "\e91a";
+}
+.icon_ok:before {
+    content: "\e91b";
+}
+.icon_vk:before {
+    content: "\e91c";
+}
+.icon_google:before {
+    content: "\e91d";
+}
+.icon_tiktok:before {
+    content: "\e91e";
+}
+.icon_flickr:before {
+    content: "\e91f";
+}
+
+//other icons
+.icon_s1_logo:before {
+    content: "\e900";
+}
+.icon_down:before {
+    content: "\e901";
+}
+.icon_left:before {
+    content: "\e902";
+}
+.icon_right:before {
+    content: "\e903";
+}
+.icon_close:before {
+    content: "\e904";
+}
+.icon_check:before {
+    content: "\e905";
+}
+.icon_search:before {
+    content: "\e906";
+}
+.icon_globe:before {
+    content: "\e907";
+}
+.icon_info:before {
+    content: "\e908";
+}
+.icon_success:before {
+    content: "\e909";
+}
+.icon_warning:before {
+    content: "\e910";
+}
+.icon_error:before {
+    content: "\e911";
+}
+.icon_news:before {
+    content: "\e912";
+}
+.icon_oclock:before {
+    content: "\e913";
+}
+.icon_camera:before {
+    content: "\e914";
+}
+.icon_play:before {
+    content: "\e915";
+}
+.icon_amd:before {
+    content: "\e916";
+}
+.icon_sun:before {
+    content: "\e917";
+}
+.icon_play_small:before {
+    content: "\e918";
+}
+.icon_logo:before {
+    content: "\e919";
+}

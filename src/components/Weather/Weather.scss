@@ -1,0 +1,98 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.weather_block {
+    color: $description;
+    margin: 0 auto;
+    padding: 0 15px;
+    .skeleton {
+        li {
+            &:before,
+            &:after {
+                display: block;
+                content: "";
+                height: 16px;
+            }
+            &:before {
+                width: 119px;
+            }
+            &:after {
+                margin-top: 10px;
+                width: 159px;
+            }
+        }
+    }
+    .block_title {
+        display: flex;
+        font-size: 130%;
+        line-height: 15.3px;
+        font-family: $bold;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+    .block_icon {
+        color: $white;
+        padding: 2px;
+        background: $primaryColor;
+        border-bottom-right-radius: 4px;
+        margin-right: 4px;
+        align-self: flex-start;
+        font-size: 1.2rem;
+        &:before {
+            display: block;
+            
+        }
+    }
+    .weather_info {
+        display: flex;
+        white-space: nowrap;
+        font-size: 120%;
+        line-height: 14px;
+        span:not(:first-child) {
+            margin-left: 8px;
+        }
+    }
+    .sunny {
+        color: $sun;
+    }
+    .weather_type {
+        text-transform: capitalize;
+    }
+    sup {
+        position: relative;
+        top: -3px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    @include mediaTo($size768) {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        left: $containerMobPadding;
+        top: 27px;
+        display: flex;
+        align-items: center;
+        .block_title {
+            font-size: 0;
+            padding: 0;
+            &:before {
+                margin-right: 10px;
+            }
+        }
+        .city_name {
+            display: none;
+        }
+        .weather_info span.temp_size {
+            margin-left: 0;
+        }
+        .skeleton li {
+            &:after {
+                display: none;
+            }
+            &:before {
+                width: 128px;
+            }
+        }
+       
+    }
+}

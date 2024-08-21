@@ -1,0 +1,23 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.social_block {
+  margin-top: 80px;
+  overflow: hidden;
+
+  .social_inner {
+    margin: 0 auto;
+    width: 287px;
+
+    @include mediaTo($size576) {
+      .facebook_iframe {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.left_col iframe {
+  max-width: 100%;
+}

@@ -1,0 +1,125 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.news_feed {
+    
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 20px);
+  padding-bottom: 20px;
+  overflow: hidden;
+  @include standardCol(3);
+  .section_title {
+      padding-bottom: 20px;
+  }
+  .news_list {
+      @extend %standardList;
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+  }
+  .news_block {
+    @extend %simpleNews;
+    padding: 20px 0 15px;
+    border-bottom: 1px solid rgba($textColor, 0.5);
+    &:first-child {
+      padding-top: 0;
+    }
+    &:nth-child(n+3) {
+      order: 2;
+    }
+  }
+  .subscribe_btns {
+    display: flex;
+    margin: 0 -4px;
+    border-bottom: 1px solid rgba($textColor, 0.5);
+    padding: 20px 0;
+  }
+  .youtube_btn,
+  .telegram_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin: 0 4px;
+    color: $white;
+    @extend %middleText;
+    @extend %iconElement;
+    font-family: $bold;
+    @extend %opacityHover;
+    padding: 13px 12px;
+    border-radius: 8px;
+    &:before {
+      display: block;
+      font-size: 1.6rem;
+      margin-right: 8px;
+    }
+  }
+  .youtube_btn {
+    background: $youtubeColor;
+    &:before {
+      content: "\e918";
+    }
+  }
+  .telegram_btn {
+    background: $telegramColor;
+    &:before {
+      content: "\e91a";
+    }
+  }
+  @extend %simpleNewsSkeleton;
+  .skeleton li {
+    padding: 20px 0 15px;
+    border-bottom: 1px solid rgba($textColor, 0.5);
+    &:first-child {
+      padding-top: 0;
+    }
+    &:nth-child(3) {
+      padding-bottom: 20px;
+      display: flex;
+      margin: 0 -4px;
+      &:before,
+      &:after {
+        flex: 1;
+        margin: 0 4px;
+        height: 45px;
+        border-radius: 8px;
+      }
+      &:after {
+        content: "";
+      }
+      span {
+        display: none;
+      }
+    }
+  }
+  &:before {
+    display: block;
+    content: "";
+    border-top: 3px solid $creamyF3;
+    margin-bottom: -3px;
+  }
+  // &.opened {
+  //   position: absolute;
+  // }
+}
+
+html:not(.touch) {
+  .news_feed .news_list {
+    @include customScroll(6px, 3px, 3px, $creamyF3, $primaryColor);
+    .news_block,
+    .subscribe_btns {
+      padding-right: 4px;
+    }
+  }
+  .moz .news_feed .news_list {
+    @include mozScroll(thin, $creamyF3, $primaryColor);
+  }
+}
+
+@import '../../assets/scss/extendsEnd';

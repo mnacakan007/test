@@ -1,0 +1,25 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/fonts';
+@import '/src/assets/scss/mixins';
+@import '/src/assets/scss/extendsStart';
+@import '/src/assets/scss/general';
+
+
+
+#root {
+  .root_inner {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.disable_events {
+  pointer-events: none;
+}
+
+.page_title {
+  color: $primaryColor;
+}
+
+@import '/src/assets/scss/extendsEnd';

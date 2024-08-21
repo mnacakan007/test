@@ -1,0 +1,54 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.category_news {
+    padding-top: 40px;
+    .news_col {
+        padding-top: 40px;
+        @include standardCol(4);
+    }
+    .top_border {
+        display: block;
+        margin-bottom: 5px;
+        background: $creamyF3;
+        &:before {
+            display: block;
+            content: "";
+            width: 70px;
+            border-top: 3px solid;
+        }
+    }
+    .news_list {
+        @extend %standardList;
+        li:not(:first-child) {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid $creamyF3;
+        }
+    }
+    .news_block {
+        @extend %standardNews;
+        .news_title {
+            font-size: 180%;
+            line-height: 21px;
+            margin-top: 3px;
+        }
+    }
+    .news_image {
+        max-width: 353px;
+    }
+    .news_category {
+        display: none;
+    }
+    @include mediaTo($size960) {
+        .news_block .news_title {
+            font-size: 160%;
+            line-height: 19px;
+            margin-top: 4px;
+        }
+    }
+    @include mediaTo($size768) {
+        display: none;
+    }
+}

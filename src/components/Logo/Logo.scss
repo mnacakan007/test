@@ -1,0 +1,84 @@
+
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.main_logo {
+    a {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 0;
+        line-height: 0;
+    }
+    svg {
+        display: block;
+        pointer-events: none;
+        * {
+            fill-rule:evenodd;
+            clip-rule:evenodd;
+            enable-background:new;
+            fill: currentColor;
+        }
+    }
+    .skeleton li:before {
+        display: block;
+        content: "";
+    }
+}
+
+.header {
+    .main_logo {
+        margin-right: auto;
+        a {
+            color: $primaryColor;
+        }
+        svg,
+        .skeleton li:before {
+            height: 41px;
+            width: 200px;
+        }
+        @include mediaRange($size576, $size960) {
+            svg,
+            .skeleton li:before {
+                height: 32px;
+                width: 156px;
+            }
+        }
+        @include mediaTo($size768) {
+            position: absolute;
+            top: 66px;
+            left: $containerMobPadding;
+            z-index: 100;
+            background: $white;
+            @include animStyle(transform 0.5s);
+        }
+        @include mediaTo($size576) {
+            svg,
+            .skeleton li:before {
+                height: 25px;
+                width: 120px;
+            }
+        }
+        
+    }
+}
+
+.footer {
+    .main_logo {
+        a {
+            color: $black;
+        }
+        svg,
+        .skeleton li:before {
+            height: 35px;
+            width: 170px;
+        }
+    }
+}
+body:has(.main_menu.opened) .main_logo {
+    @include mediaRange($size576, $size768) {
+        @include transStyle(translate3d(0,-54px, 0))
+    }
+    @include mediaTo($size576) {
+        @include transStyle(translate3d(0,-50px, 0))
+    }
+}

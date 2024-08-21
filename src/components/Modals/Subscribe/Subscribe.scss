@@ -1,0 +1,93 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+@import '../../../assets/scss/extendsStart';
+
+$popupBg: linear-gradient(0deg, #FFFFFF, #FFFFFF),
+linear-gradient(0deg, rgba(21, 103, 169, 0.1), rgba(21, 103, 169, 0.1));
+.subscribe_popup {
+  .popup_container {
+    @include popupContainer($popupBg, 1236px, 80px $containerPadding);
+    z-index: 5;
+    overflow: hidden;
+    text-align: center;
+    &:before,
+    &:after {
+      @include psevdoAbs;
+      top: 0;
+      height: 100%;
+      width: 490px;
+      z-index: -1;
+      background: linear-gradient(62.06deg, #1567A9 -1.17%, rgba(232, 240, 246, 0) 64.45%);
+    }
+    &:before {
+      right: 67.88%;
+    }
+    &:after {
+      left: 78.48%;
+      @include torigin(center);
+      @include transStyle(rotate(180deg));
+    }
+  }
+  .section_title {
+    justify-content: center;
+  }
+  .subscribe_block {
+    display: flex;
+    margin: 35px auto 0;
+    max-width: 418px;
+  }
+  .submit_btn {
+    border: none;
+    background: $primaryColor;
+    padding: 6px 12px;
+    color: $white;
+    font-size: 140%;
+    line-height: 18px;
+  }
+  .subscribe_field {
+    flex: 1;
+    input {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid $primaryColor;
+      font-size: 140%;
+      line-height: 18px;
+      padding: 5px 12px;
+      color: $primaryColor;
+      background: transparent;
+    }
+    @include placeholder {
+      color: $primaryColor;
+    }
+  }
+  @include mediaTo($size960) {
+    .popup_container {
+      max-width: 750px;
+      &:before,
+      &:after {
+        width: 320px;
+      }
+    }
+    .subscribe_block {
+      margin-top: 24px;
+    }
+  }
+  @include mediaTo($size576) {
+
+    .subscribe_block {
+      flex-wrap: wrap;
+    }
+    .subscribe_field {
+      @include colSize(12);
+      margin-bottom: 16px
+    }
+    .submit_btn {
+      @include colSize(12);
+    }
+  }
+}
+
+
+
+
+@import '../../../assets/scss/extendsEnd';

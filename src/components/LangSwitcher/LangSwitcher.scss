@@ -1,0 +1,61 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.lg_block {
+  margin-left: -20px;
+  border-left: 1px solid $creamyF3;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  .skeleton {
+    display: flex;
+    align-items: center;
+    li {
+        margin-left: 20px;
+        &:before {
+            display: block;
+            content: "";
+            height: 20px;
+            width: 32px;
+        }
+    }
+}
+}
+.lg_list {
+  display: flex;
+  button {
+    @extend %linkTypeBtn;
+    color: $primaryColor;
+    font-size: 140%;
+    line-height: 24px;
+    font-family: $bold;
+    margin-left: 20px;
+    text-align: center;
+    min-width: 31px;
+    @extend %darkHover;
+  }
+}
+
+@include mediaTo($size1280) {
+  .lg_block {
+    margin-left: 0
+  }
+}
+
+@include mediaTo($size768) {
+  .lg_block {
+    height: 32px;
+    border-left: none;
+    border-right: 1px solid $menuBorder;
+    padding-right: 20px;
+    margin: 0;
+    .skeleton {
+      height: 32px
+    }
+  }
+}
+
+
+
+@import '../../assets/scss/extendsEnd';

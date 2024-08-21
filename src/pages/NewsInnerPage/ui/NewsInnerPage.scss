@@ -1,0 +1,14 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+@import '/src/assets/scss/extendsStart';
+
+.video_and_mostread {
+  @include standardCol(9);
+  @include mediaRange($size576, $size768) {
+    @include colSize(8);
+  }
+  @include mediaTo($size576) {
+    @include colSize(12);
+    padding-top: 80px;
+  }
+}

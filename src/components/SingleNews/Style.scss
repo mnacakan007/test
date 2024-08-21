@@ -1,0 +1,30 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.single_news {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 75%;
+  max-width: 75%;
+
+  .news_block {
+    @extend %standardNews;
+    overflow: hidden;
+    .news_title {
+      margin-top: 5px;
+      font-size: 200%;
+      line-height: 24px;
+    }
+    .news_category:after {
+      @include psevdoAbs;
+      top: 0;
+      left: 0;
+      width: 1000px;
+      border-top: 1px solid;
+    }
+  }
+}
+
+@import '../../assets/scss/extendsEnd';
+

@@ -1,0 +1,81 @@
+//font families
+$regular: 'ArianAMU', 'Helvetica';
+$bold: 'ArianAMU-Bold', 'Helvetica-Bold';
+
+
+
+
+//media query sizes
+$size400: 401px;
+$size480: 481px;
+$size576: 576px;
+$size600: 601px;
+$size640: 641px;
+$size720: 721px;
+$size768: 769px;
+$size960: 1025px;
+$size1200: 1201px;
+$size1280: 1281px;
+$size1366: 1366px;
+$size1440: 1441px;
+$size1600: 1601px;
+
+//colors
+$black: #000000;
+$black33: #333333; 
+$gray66: #666666;
+$gray99: #999999;
+$grayC2: #C2C2C2;
+$grayE5: #e5e5e5;
+$white: #ffffff;
+$creamyF2:#f2f2f2;
+$error: #BA0D0D;
+$creamyF3: #F3F3F3;
+$primaryColor: var(--primaryColor, #1567a9);
+$primaryVisited: var(--primaryVisited, #5d7cbb);
+$secondColor: $black;
+$textColor: #353535;
+$success: #38C758;
+$info: #388BC7;
+$warning: #FFD99F;
+$devColor: #069dd5;
+$description: #536471;
+$sun: #D19C16;
+$menuBorder: #d9d9d9;
+$dateColor: #A0A0A0;
+$activeBg: rgba(#1d3eb7, 0.1);
+//social icons original color
+$facebookColor: #3b5998;
+$twitterColor: #00acee;
+$youtubeColor: #c4302b;
+$behanceColor: #053eff;
+$linkedinColor: #0e76a8;
+$okColor: #ed812b;
+$pinterestColor: #c8232c;
+$vkColor: #4c75a3;
+$tiktokColor: #EE1D52;
+$telegramColor: #0088cc;
+$titleDividerColor: #606570;
+$instagramColor: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+
+//sizes
+$containerWidth: 1160px;
+$colPadding: 14px;
+$colMobPadding: 10px;
+$containerPadding: 20px;
+$containerMobPadding: 20px;
+
+$siteBg: rgba($white,0.88);
+$lightBg: #171922;
+$siteColor: #FFAE11;
+
+body:has(.root_inner.medicine) {
+    --primaryColor: #78b18f;
+    --primaryVisited: #8fc0b6;
+}
+
+body:has(.root_inner.life) {
+    --primaryColor: #df5c77;
+    --primaryVisited: #eb99a1;
+}
+

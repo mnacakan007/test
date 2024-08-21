@@ -1,0 +1,74 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+@import '../../../assets/scss/extendsStart';
+
+.category_page_block {
+  .about_us_description {
+    font-size: 160%;
+    line-height: 18px;
+    color: $textColor;
+    margin-bottom: 40px;
+
+    p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+
+      &:last-child {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .authors_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @extend %standardList;
+
+    li {
+      background: $white;
+      color: $textColor;
+      position: relative;
+      z-index: 0;
+
+      &.news_col {
+        margin-bottom: 80px;
+        @include standardCol(4);
+        &:first-child {
+          padding-left: 0;
+        }
+
+        .author_info {
+          position: absolute;
+          left: 0;
+          right: 20px;
+          bottom: -80px;
+          background: $creamyF3;
+          padding: 40px 20px 20px 20px;
+          margin: 0 20px 0 64px;
+          z-index: -1;
+
+          .role,
+          .full_name {
+            color: $textColor;
+            font-size: 150%;
+            line-height: 18px;
+          }
+
+          .full_name {
+            font-family: $bold;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@import '../../../assets/scss/extendsEnd';

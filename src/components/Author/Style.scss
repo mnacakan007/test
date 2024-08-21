@@ -1,0 +1,75 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.author_block {
+  display: flex;
+
+  .author_info {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 75%;
+    max-width: 75%;
+    margin-left: 30px;
+
+    .role,
+    .full_name {
+      color: $textColor;
+      font-size: 150%;
+      line-height: 18px;
+      margin-bottom: 20px;
+    }
+
+    .role {
+      font-size: 130%;
+    }
+
+    .full_name {
+      font-family: $bold;
+    }
+
+    .about_author {
+      font-size: 160%;
+      line-height: 19px;
+      background-color: $creamyF3;
+      padding: 30px;
+      margin-bottom: 55px;
+    }
+
+    .authors_articles_title {
+      font-size: 130%;
+      line-height: 15px;
+      color: $textColor;
+      margin-bottom: 20px;
+    }
+
+    .author_articles {
+      display: flex;
+      flex-direction: column;
+
+      .author_article {
+        margin-bottom: 20px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        .article_title {
+          font-size: 160%;
+          font-family: $bold;
+          line-height: 19px;
+          color: $textColor;
+        }
+      }
+
+      .pagination {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@import '../../assets/scss/extendsEnd';
+

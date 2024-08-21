@@ -1,0 +1,61 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+@import '../../../assets/scss/extendsStart';
+
+.video_player_popup {
+  .popup_container {
+    @include popupContainer(transparent, 855px, 0);
+    z-index: 5;
+    text-align: center;
+    &:before,
+    &:after {
+      @include psevdoAbs;
+      top: 0;
+      height: 100%;
+      width: 490px;
+      z-index: -1;
+    }
+    &:before {
+      right: 67.88%;
+    }
+    &:after {
+      left: 78.48%;
+      @include torigin(center);
+      @include transStyle(rotate(180deg));
+    }
+    .close_btn.icon_close {
+      background-color: #353535;
+      color: $white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 44px;
+      position: absolute;
+      right: -23px;
+      top: -23px;
+      width: 44px;
+      z-index: 10;
+    }
+    .icon_close:hover {
+      &:before {
+        opacity: .8;
+      }
+    }
+  }
+  @include mediaTo($size960) {
+    .popup_container {
+      max-width: 750px;
+      &:before,
+      &:after {
+        width: 320px;
+      }
+    }
+  }
+  @include mediaTo($size576) {
+  }
+}
+
+
+
+
+@import '../../../assets/scss/extendsEnd';

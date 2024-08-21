@@ -1,0 +1,59 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  display: none;
+}
+
+.react-datepicker__header {
+  background-color: $white;
+  border-bottom: none;
+}
+
+.react-datepicker__year-dropdown,
+.react-datepicker__month-dropdown,
+.react-datepicker__month-year-dropdown {
+  overflow-y: auto;
+  max-height: 300px;
+
+  &::-webkit-scrollbar {
+    background: $siteBg;
+    width: 2px;
+    visibility: visible;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $lightBg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $siteColor;
+  }
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #000;
+  display: inline-block;
+  width: 2.7rem;
+  line-height: 2.7rem;
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  border-radius: 0;
+
+  &--disabled {
+    color: transparent;
+  }
+}
+
+.react-datepicker__day-name {
+  border: none;
+}
+
+@import '../../assets/scss/extendsEnd';

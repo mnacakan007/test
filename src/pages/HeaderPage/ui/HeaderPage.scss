@@ -1,0 +1,31 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+@import '/src/assets/scss/extendsStart';
+
+.header {
+  @include zIndex(100);
+  &_inner {
+    width: 100%;
+    max-width: 1230px + 2 * $containerPadding;
+    padding: 0 $containerPadding;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  &_top {
+    padding: 15px 0;
+  }
+  &:not(:has(.lg_block)) .search_block {
+    margin-right: 0;
+  }
+  @include mediaTo($size768) {
+    &_top {
+      padding: 9px 0;
+      .header_inner {
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+
+

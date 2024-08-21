@@ -1,0 +1,123 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.currency_block {
+    color: $description;
+    margin: 0 auto;
+    padding: 0 15px;
+    .skeleton {
+        li {
+            &:before,
+            &:after {
+                display: block;
+                content: "";
+                height: 16px;
+            }
+            &:before {
+                width: 180px;
+            }
+            &:after {
+                margin-top: 10px;
+                width: 108px;
+            }
+        }
+    }
+    .block_title {
+        display: flex;
+        font-size: 130%;
+        line-height: 15.3px;
+        font-family: $bold;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+    .block_icon {
+        color: $white;
+        padding: 1px;
+        background: $primaryColor;
+        border-bottom-right-radius: 4px;
+        margin-right: 4px;
+        align-self: flex-start;
+        font-size: 1.4rem;
+        &:before {
+            display: block;
+            
+        }
+    }
+    .currency_list {
+        @extend %standardList;
+        @include overHidden;
+        height: 14px;
+        font-size: 120%;
+        line-height: 14px;
+        li {
+
+            white-space: nowrap;
+            &:first-child {
+                animation: changeShowedCurrency 15s infinite;
+                animation-delay: 2.5s;
+            }
+        }
+    }
+    .change_size {
+        padding-left: 4px;
+        &.asc {
+            color: $success;
+        }
+        &.desc {
+            color: $error;
+        }
+    }
+    @include mediaTo($size768) {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        left: $containerMobPadding;
+        top: 8px;
+        display: flex;
+        align-items: center;
+        .block_title {
+            font-size: 0;
+            padding: 0;
+            &:before {
+                margin-right: 10px;
+            }
+        }
+        .skeleton li {
+            &:after {
+                display: none;
+            }
+            &:before {
+                width: 128px;
+            }
+        }
+    }
+}
+
+$stepSize: -14px;
+@keyframes changeShowedCurrency {
+    0% {
+        margin-top: 0;
+    }
+    15% {
+        margin-top: 0;
+    }
+    18% {
+        margin-top: $stepSize;
+    }
+    48% {
+        margin-top: $stepSize;
+    }
+    51% {
+        margin-top: $stepSize * 2;
+    }
+    81% {
+        margin-top: $stepSize * 2;
+    }
+    84% {
+        margin-top: $stepSize * 3;
+    }
+    100% {
+        margin-top: $stepSize * 3;
+    }
+}

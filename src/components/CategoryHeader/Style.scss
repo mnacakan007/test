@@ -1,0 +1,26 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+@import '../../assets/scss/extendsStart';
+
+.header-block {
+  display: flex;
+  align-items: center;
+
+  &_title {
+    font-size: 280%;
+    font-weight: $bold;
+    color: $textColor;
+    margin-right: 16px;
+    line-height: 0;
+    text-transform: uppercase;
+  }
+
+  &_divider {
+    flex-grow: 1;
+    border: none;
+    border-top: 2px solid $titleDividerColor;
+  }
+}
+
+@import '../../assets/scss/extendsEnd';
+
