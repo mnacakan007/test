@@ -10,6 +10,7 @@ import { OLD_API_URL } from '~/shared/config/config.ts';
 import { useAppDispatch } from '~/store';
 import { newsSelector } from '~/store/news/news.selector.ts';
 import { uiRefresh } from '~/store/news/slice.ts';
+import VideoPreviewItem from '~/components/VideoNews/components/VideoPreviewItem.tsx';
 import './Style.scss';
 
 const News: React.FC<INewsProps> = ({
@@ -60,7 +61,7 @@ const News: React.FC<INewsProps> = ({
 				)
 			) : (
 				<div className="news_image">
-					{imageUrl && <img src={OLD_API_URL + '/' + imageUrl} alt={title} title={title} width={width} height={height}/>}
+					<VideoPreviewItem news={news} />
 				</div>
 			)}
 

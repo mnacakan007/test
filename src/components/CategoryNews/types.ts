@@ -14,6 +14,12 @@ export interface CategoryNewsListProps extends CategoryNewsProps {}
 
 export interface VideoNewsListProps extends CategoryBaseProps {}
 
+export interface VideoContentProps extends CategoryBaseProps {
+	fromModalPage?: boolean;
+}
+
+export interface VideoMainNewsProps extends VideoContentProps {}
+
 export interface AuthorsListProps {
 	authors: IAuthor[];
 }

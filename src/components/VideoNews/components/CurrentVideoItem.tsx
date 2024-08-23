@@ -1,16 +1,18 @@
 import React, { LegacyRef } from 'react';
-import { OLD_API_URL } from '~/shared/config/config.ts';
 import { INews } from '~/store/news/types.ts';
+import VideoPreviewItem from './VideoPreviewItem.tsx';
 import '../Style.scss';
 
 export interface CurrentVideoItemProps {
-	news        : INews;
+	news        : INews | null;
 	videoBtnRef?: LegacyRef<HTMLButtonElement> | null;
 	btnClick    : () => void;
 } 
 
 const CurrentVideoItem: React.FC<CurrentVideoItemProps> = ({ videoBtnRef, news, btnClick }) => {
-	const { title, imageUrl, date } = news;
+	if (!news) return null;
+
+	const { title, date } = news;
 
 	return (
 		<>
@@ -18,10 +20,9 @@ const CurrentVideoItem: React.FC<CurrentVideoItemProps> = ({ videoBtnRef, news, 
 				ref={videoBtnRef}
 				onClick={btnClick}
 				className="video_btn"
-				data-src="Idh8n5XuYIA"
 				aria-label={title}
 			>
-				{imageUrl && <img src={OLD_API_URL + '/' + imageUrl} alt={title} title={title} width={''} height={''}/>}
+				<VideoPreviewItem news={news} />
 			</button>
 
 			<div className="news_date">{date?.replace(' ', ' • ')}</div>

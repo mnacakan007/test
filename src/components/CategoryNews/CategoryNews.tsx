@@ -6,16 +6,16 @@ import VideoPlayerModal from '~/components/Modals/VideoPlayer';
 import { settingsSelector } from '~/store/settings/settings.selector.ts';
 import { newsSelector } from '~/store/news/news.selector.ts';
 import CategoryNewsList from '~/components/CategoryNews/components/CategoryNewsList.tsx';
-import VideoNewsList from '~/components/CategoryNews/components/VideoNewsList.tsx';
+import CategoryVideoNewsList from '~/components/CategoryNews/components/CategoryVideoNewsList.tsx';
 import YearPicker from '~/components/YearPicker';
 import { checkCategoryColor, getCategoryName } from '~/helpers/category.ts';
 import { CategoryNewsProps } from '~/components/CategoryNews/types.ts';
 import { CATEGORY_LIST_LOCATION } from '~/helpers/constants.ts';
 import './Style.scss';
 
-const CategoryNews: React.FC<CategoryNewsProps> = ({ 
-	newsList, 
-	categoryId, 
+const CategoryNews: React.FC<CategoryNewsProps> = ({
+	newsList,
+	categoryId,
 	categoryListLocation,
 }) => {
 	const initialData = useSelector(newsSelector.initialData);
@@ -46,7 +46,7 @@ const CategoryNews: React.FC<CategoryNewsProps> = ({
 
 			{categoryListLocation !== CATEGORY_LIST_LOCATION.VIDEO_PAGE
 				? <CategoryNewsList categoryListLocation={categoryListLocation} newsList={newsList}/>
-				: <VideoNewsList newsList={newsList} />
+				: <CategoryVideoNewsList newsList={newsList} />
 			}
 
 			<VideoPlayerModal />

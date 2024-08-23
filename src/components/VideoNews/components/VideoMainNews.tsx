@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet, HelmetTags, StateUpdate } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
-import { CategoryBaseProps } from '~/components/CategoryNews/types.ts';
+import { VideoMainNewsProps } from '~/components/CategoryNews/types.ts';
 import CurrentVideoItem from './CurrentVideoItem.tsx';
 import {
 	IYTVideNews,
@@ -12,10 +12,13 @@ import {
 import { YOUTUBE_IFRAME_API_URL } from '~/shared/config/config.ts';
 import { newsSelector } from '~/store/news/news.selector.ts';
 import { INews, IVideoNews } from '~/store/news/types.ts';
+import { uiRefresh } from '~/store/news/slice.ts';
+import { useAppDispatch } from '~/store';
 import '../Style.scss';
 
-const VideoMainNews: React.FC<CategoryBaseProps> = ({ newsList }) => {
-	const [selectedNews, setSelectedNews] = useState<IVideoNews | INews | null>(null);
+const VideoMainNews: React.FC<VideoMainNewsProps> = ({ newsList, fromModalPage }) => {
+	const [scriptLoaded, setScriptLoaded] = useState(false);
+	const [selectedNews, setSelectedNews] = useState<IVideoNews | INews | null>();
 	const videoBtnRef = useRef<HTMLButtonElement | null>(null);
 	const player = useRef<IYouTubePlayer | null>(null);
 	const currentlyPlaying = useRef<IYouTubePlayer | null>(null);
@@ -23,6 +26,19 @@ const VideoMainNews: React.FC<CategoryBaseProps> = ({ newsList }) => {
 	const initialData = useSelector(newsSelector.initialData);
 	const videoNews = newsList || initialData && initialData.videoNews;
 	const { YT } = (window as Window & typeof globalThis & { YT: IYTVideNews });
+	let foundIntegrationLoaderScript: HTMLScriptElement | undefined;
+	const dispatch = useAppDispatch();
+
+	const handleChangeClientState = (_newState: StateUpdate, addedTags: HelmetTags) => {
+		if (addedTags && addedTags.scriptTags) {
+			foundIntegrationLoaderScript =
+				addedTags.scriptTags.find(({ src }) => src === YOUTUBE_IFRAME_API_URL);
+
+			if (foundIntegrationLoaderScript) {
+				foundIntegrationLoaderScript.addEventListener('load', () => setScriptLoaded(true), { once: true });
+			}
+		}
+	};
 
 	const playVideo = (player: IYouTubePlayer, btn: Element) => {
 		if (typeof player.playVideo === 'function') {
@@ -56,7 +72,7 @@ const VideoMainNews: React.FC<CategoryBaseProps> = ({ newsList }) => {
 	};
 
 	const addPlayers = () => {
-		if (!player.current && (selectedNews as IVideoNews)?.videoId) {
+		if (scriptLoaded && !player.current && (selectedNews as IVideoNews)?.videoId) {
 			player.current = new YT.Player('video_player_iframe', {
 				width  : 750,
 				height : 550,
@@ -74,36 +90,49 @@ const VideoMainNews: React.FC<CategoryBaseProps> = ({ newsList }) => {
 		}
 	};
 
+	const findAndSelectVideoNews = () => {
+		const news = videoNews!.find(news => news.id === selectedVideoNewsId) as IVideoNews;
+
+		if (news) {
+			pausePlayer();
+			setSelectedNews(news);
+		}
+	};
+
 	useEffect(() => {
+		if (!scriptLoaded) return;
+
 		if (videoNews && videoNews?.length > 0) {
-			setSelectedNews(videoNews[0]);
+			if (!fromModalPage) {
+				const firstItemID = videoNews[0]?.id;
 
-			if (selectedVideoNewsId !== -1) {
-				const news = videoNews?.find(news => news.id === selectedVideoNewsId);
-
-				if (news) {
-					pausePlayer();
-					setSelectedNews(news);
-
-					if (autoPlayVideo) {
-						addPlayers();
-					}
+				if (selectedVideoNewsId) {
+					findAndSelectVideoNews();
+				} else if (firstItemID) {
+					dispatch(uiRefresh({ selectedVideoNewsId: firstItemID }));
 				}
+			} else if (selectedVideoNewsId) {
+				findAndSelectVideoNews();
 			}
 		}
 		// eslint-disable-next-line
-	}, [selectedVideoNewsId, videoNews]);
+	}, [selectedVideoNewsId, videoNews, scriptLoaded]);
 
-	if (!selectedNews) return null;
+	useEffect(() => {
+		if (selectedNews && autoPlayVideo && scriptLoaded) {
+			addPlayers();
+		}
+		// eslint-disable-next-line
+	}, [selectedNews]);
 
 	return (
 		<>
-			<Helmet>
+			<Helmet onChangeClientState={handleChangeClientState}>
 				<script id="YOUTUBE_IFRAME_ID" defer src={YOUTUBE_IFRAME_API_URL}/>
 			</Helmet>
 
 			<div className="current_video">
-				<CurrentVideoItem news={selectedNews} btnClick={addPlayers} videoBtnRef={videoBtnRef}/>
+				{selectedNews && <CurrentVideoItem news={selectedNews} btnClick={addPlayers} videoBtnRef={videoBtnRef}/>}
 
 				<div id="video_player_iframe" className="video_player"/>
 			</div>

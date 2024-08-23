@@ -6,25 +6,50 @@ import CurrentVideoItem from '~/components/VideoNews/components/CurrentVideoItem
 import useWindowSize from '~/hooks/useWindowSize.ts';
 import { useAppDispatch } from '~/store';
 import { uiRefresh } from '~/store/news/slice.ts';
+import { useRootAppNavigate } from '~/hooks/useAppNavigate.ts';
+import { useParams } from 'react-router-dom';
 import '../Style.scss';
 
-const VideoNewsList: React.FC<VideoNewsListProps> = ({ newsList }) => {
+const VIDEO_CATEGORY_URL = 'videos';
+
+const CategoryVideoNewsList: React.FC<VideoNewsListProps> = ({ newsList }) => {
 	const [showSocialBlock, setShowSocialBlock] = useState(false);
+	const params = useParams<{ hash: string; page: string }>();
+	const { hash, page: pageParam = '1' } = params;
 	const windowSize = useWindowSize();
 	const dispatch = useAppDispatch();
+	const navigate = useRootAppNavigate();
 
 	useEffect(() => {
+		if (hash && pageParam) {
+			openInitialPlayerModal(Number(hash));
+		}
+		// eslint-disable-next-line 
+	}, [hash, pageParam]);
+	
+	useEffect(() => {
 		setShowSocialBlock(windowSize < 576);
-
-		return () => {
-			dispatch(uiRefresh({ selectedVideoNewsId: null }));
-		};
-		// eslint-disable-next-line
 	},[windowSize]);
 
-	const openPlayerModal = (id: number) => {
-		dispatch(uiRefresh({ selectedVideoNewsId: id }));
-		dispatch(uiRefresh({ showVideoModal: true, autoPlayVideo: true }));
+
+	const openInitialPlayerModal = (id: number) => {
+		dispatch(uiRefresh({ showVideoModal: true, autoPlayVideo: true, selectedVideoNewsId: id }));
+	};
+
+	const navigateToVideo = (id: number) => {
+		navigate(`${VIDEO_CATEGORY_URL}/${Number(pageParam)}/${id}`);
+	};
+
+	const openVideo = (id: number) => {
+		if (hash) {
+			if (id && Number(hash) !== id) {
+				navigateToVideo(id);
+			} else {
+				openInitialPlayerModal(id);
+			}
+		} else {
+			navigateToVideo(id);
+		}
 	};
 
 	return (
@@ -34,7 +59,7 @@ const VideoNewsList: React.FC<VideoNewsListProps> = ({ newsList }) => {
 					{newsList && newsList.map(news => (
 						<li key={news.id} className="video_content news_col">
 							<div className="current_video">
-								<CurrentVideoItem news={news} btnClick={() => openPlayerModal(news.id)} />
+								<CurrentVideoItem news={news} btnClick={() => openVideo(news.id)} />
 							</div>
 						</li>
 					))}
@@ -55,4 +80,4 @@ const VideoNewsList: React.FC<VideoNewsListProps> = ({ newsList }) => {
 	);
 };
 
-export default VideoNewsList;
+export default CategoryVideoNewsList;

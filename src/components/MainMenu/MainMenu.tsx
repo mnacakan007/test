@@ -30,7 +30,7 @@ const MainMenu: React.FC= () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const [showFeedToggleButton, setShowFeedToggleButton] = useState(false);
 	const [localLoading, setLocalLoading] = useState(false);
-	const currentWebsiteValue =  useRef<Website | null>(null);
+	const [currentWebsiteValue, setCurrentWebsiteValue] = useState<Website | null>(null);
 	const showMenuRef = useRef<HTMLUListElement | null>(null);
 	const params = useParams<{ category: string }>();
 	const { category: categoryNameFromParams } = params;
@@ -59,14 +59,15 @@ const MainMenu: React.FC= () => {
 		setShowFeedToggleButton(windowSize <= 768);
 
 		// eslint-disable-next-line
-	},[windowSize, initialData, categoryNameFromParams, categories]);
+	},[windowSize, initialData, categoryNameFromParams, categories, localLoading]);
 
 	useEffect(() => {
-		const isLoadingNewData = Boolean(!initialData || (initialData && loading && currentWebsite !== currentWebsiteValue.current));
+		const isLoadingNewData = Boolean(!initialData || (initialData && loading && currentWebsite !== currentWebsiteValue));
 		setLocalLoading(isLoadingNewData);
-		currentWebsiteValue.current = currentWebsite;
+		setCurrentWebsiteValue(currentWebsite);
+		// eslint-disable-next-line
 	}, [currentWebsite, loading, initialData]);
-	
+
 	const setCategoryCurrentClass = () => {
 		if (categoryNameFromParams && categories) {
 			const index = categories.findIndex(category => category.link.includes(categoryNameFromParams));
@@ -80,7 +81,7 @@ const MainMenu: React.FC= () => {
 			setCategory('');
 		}
 	};
-	
+
 	const toggleMenu = () => {
 		if (windowSize <= 768 && !showMenu) {
 			scrollToTop('smooth');
@@ -119,9 +120,10 @@ const MainMenu: React.FC= () => {
 		return categories.filter(category => {
 			const isRussianOrEnglish = currentLanguage?.code === ELanguageCodes.ru || currentLanguage?.code === ELanguageCodes.en;
 			const isLifeOrMedicine = category.link === ROUTE_PATH.life || category.link === ROUTE_PATH.medicine;
+			const isAboutUs = !inMenu && category.link === AUTHORS_URL;
 
 			// Skip categories with specific links if the current language is Russian or English
-			return !(isRussianOrEnglish && isLifeOrMedicine || (category.link === AUTHORS_URL && !inMenu));
+			return !((isRussianOrEnglish && isLifeOrMedicine) || isAboutUs);
 		}).map(category => (
 			<li key={category.id}>
 				<Link
@@ -156,7 +158,7 @@ const MainMenu: React.FC= () => {
 							<FormattedMessage id="newsfeed"/>
 						</button>
 					)}
-					
+
 					<button type='button' className="burger_menu" aria-label="menu" onClick={toggleMenu}>
 						<span/>
 					</button>

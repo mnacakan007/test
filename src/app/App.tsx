@@ -25,6 +25,7 @@ const locales = {
 };
 
 type LocaleKeys = keyof typeof locales;
+const MISSING_TRANSLATION = 'MISSING_TRANSLATION';
 
 const App: React.FC = () => {
 	const currentLanguage = useSelector(settingsSelector.currentLanguage);
@@ -40,9 +41,9 @@ const App: React.FC = () => {
 				body.classList.add('web');
 			}
 			if (navigator.userAgent.search('Safari') >= 0 && navigator.userAgent.search('Chrome') < 0) {
-				body.classList.add('ios');       
+				body.classList.add('ios');
 			} else if (navigator.userAgent.search('Mozilla') >= 0 && navigator.userAgent.search('Chrome') < 0) {
-				body.classList.add('moz');  
+				body.classList.add('moz');
 			}
 		}
 
@@ -58,6 +59,15 @@ const App: React.FC = () => {
 			locale={currentLanguage?.code || ''}
 			key={currentLanguage?.code}
 			messages={translations[langCode]}
+			onError={(err) => {
+				if (err.code === MISSING_TRANSLATION) {
+					console.warn('Missing translation for:', err.message);
+					// Return the original text (id) when the translation is missing
+					return err?.descriptor?.id;
+				} else {
+					throw err;
+				}
+			}}
 		>
 			<HelmetProvider>
 				<HelmetLayout>

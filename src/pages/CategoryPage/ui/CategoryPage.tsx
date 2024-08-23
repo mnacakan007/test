@@ -99,7 +99,7 @@ const CategoryPage: React.FC = () => {
 				return;
 			}
 
-			if (currentCategory && ((categoryNews && categoryNews[0]?.categoryId !== currentCategoryId) || !categoryNews)) {
+			if (currentCategory && ((categoryNews && categoryNews[0].categoryId !== currentCategoryId) || !categoryNews)) {
 				const categoryId = currentCategoryId || currentCategory.id;
 				setCategoryListLocation(CATEGORY_LIST_LOCATION.CATEGORY_PAGE);
 				getCategoryNews(categoryId);

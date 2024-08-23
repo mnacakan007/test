@@ -35,16 +35,16 @@
                     border-radius: 0;
                 }
                 &:after {
-                   @include psevdoAbs;
-                   left: 18px;
-                   width: 24px;
-                   height: 12px;
-                   top: 19px;
-                   border: solid $primaryColor;
-                   border-width: 5px 0;
-                   z-index: 1;
-                   border-radius: 0;
-                   background: transparent;
+                    @include psevdoAbs;
+                    left: 18px;
+                    width: 24px;
+                    height: 12px;
+                    top: 19px;
+                    border: solid $primaryColor;
+                    border-width: 5px 0;
+                    z-index: 1;
+                    border-radius: 0;
+                    background: transparent;
                 }
             }
         }
@@ -62,9 +62,9 @@
         max-height: 0;
         overflow: hidden;
         @include animStyle(max-height 0.5s);
-        box-shadow: 0px 10px 7px rgba($black, 0.12);
+        box-shadow: 0 10px 7px rgba($black, 0.12);
         background: $white;
-        
+
         ul {
             margin: 0;
             list-style-type: none;
@@ -162,7 +162,6 @@
             line-height: 24px;
             padding: 13px 0;
             font-family: $bold;
-            text-align: center;
             @extend %color300;
             span {
                 display: inline-block;
@@ -267,8 +266,8 @@
             max-width: 52px;
             padding: 0 15px;
             &:after {
-               left: 15px;
-               top: 14px;
+                left: 15px;
+                top: 14px;
             }
         }
         .main_menu {
@@ -293,7 +292,7 @@
         }
         .burger_menu {
             color: $primaryColor;
-            
+
             border: none;
             @include animStyle(transform 0.5s);
             margin: -12px 5px -12px;

@@ -7,6 +7,7 @@ import { IHelmetLayoutProps } from './types';
 
 const HelmetLayout: FC<IHelmetLayoutProps> = ({ children }) => {
 	const websiteSeo = useSelector(settingsSelector.initialSettings);
+	const currentLanguage = useSelector(settingsSelector.currentLanguage);
 	const seo = useSelector(settingsSelector.SEO);
 
 	const tabSeo = seoValue(websiteSeo, seo);
@@ -22,6 +23,7 @@ const HelmetLayout: FC<IHelmetLayoutProps> = ({ children }) => {
 	return (
 		<div>
 			<Helmet>
+				<html lang={currentLanguage?.htmlCode || ''}/>
 				<title>{seoTitle}</title>
 				<meta name="description" content={seoDescription || ''} />
 				<meta name="keywords" content={seoKeywords || ''} />
